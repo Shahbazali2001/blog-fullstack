@@ -46,6 +46,14 @@ export class AuthService {
         return null;
     }
 
+    async logOut(){
+        try{
+            await this.account.deleteSessions();
+        } catch(error){
+            console.log("logOut error: ", error);
+        }
+    }
+
 
 }
 
