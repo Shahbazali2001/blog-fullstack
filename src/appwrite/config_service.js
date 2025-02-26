@@ -125,10 +125,10 @@ export class BlogService {
                 config.appwrite_BucketId,
                 fileId
             )
-            return true;
+           
         }catch(error){
             throw new Error(error.message); 
-            return false;
+    
         }
     }
 
