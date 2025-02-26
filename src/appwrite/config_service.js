@@ -13,7 +13,7 @@ export class BlogService {
         .setEndpoint(config.appwrite_Url)
         .setProject(config.appwrite_ProjectId)
         this.databases = new Databases(this.client)
-        this.bucket = new Storage(th is.client)     
+        this.bucket = new Storage(this.client)     
     }
 
     async createPost({title, slug, content, featuredImage, status, userId}){
@@ -87,12 +87,54 @@ export class BlogService {
             )
         }catch(error){
             throw new Error(error.message); 
-            return null;
+            return false;
             
      }
     }
 
-    //
+    // file upload service 
+
+    async uploadFile(file){
+        try{
+            return await this.bucket.createFile(
+                config.appwrite_BucketId,
+                ID.unique(),
+                file
+            )}catch(error){
+                throw new Error(error.message); 
+            }
+    }
+
+    async deleteFile(fileId){
+        try{
+            return await this.bucket.deleteFile(
+                config.appwrite_BucketId,
+                fileId
+            )
+            return true;
+
+            }catch(error){
+                throw new Error(error.message); 
+                return false; 
+            }
+    }
+
+    async getFilePreview(fileId){
+        try{
+            return this.bucket.getFilePreview(
+                config.appwrite_BucketId,
+                fileId
+            )
+            return true;
+        }catch(error){
+            throw new Error(error.message); 
+            return false;
+        }
+    }
+
+
+        
+        
 
 }
 
