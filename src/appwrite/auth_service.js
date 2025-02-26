@@ -5,8 +5,7 @@ import { Client, Account, ID } from 'appwrite';
 export class AuthService {
     client = new Client();
     account;
- 
-    constructor(){
+      constructor(){
         this.client
         .setEndpoint(config.appwrite_Url)
         .setProject(config.appwrite_ProjectId);
