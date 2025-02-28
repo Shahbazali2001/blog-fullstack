@@ -33,7 +33,7 @@ export class AuthService {
                 return await this.account.createEmailSession(email, password);
             } catch(error){
                 throw new Error(error.message);
-            }
+            } 
     }
 
     async getCurrentUser(){
