@@ -46,9 +46,21 @@ const LogIn = () => {
                 </p> 
                     {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
                     <form onSubmit={handleSubmit(login)} className='mt-8'>
-                        <div>
+                        <div className='space-y-5'>
+                            <Input label='Email' placeholder='Enter your email' type='email' {...register("email",{
+                                required:true,
+                                validate:{
+                                    isEmail: (value) =>
+                                        value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) || "Please enter a valid email"
+                                }
+                            })} />
 
-    
+                            <Input label='Password' placeholder="Enter your password" type='password' {...register("password",{
+                                required:true,
+                            })} />
+
+                            <Button type='submit' className='w-full'>Login</Button>
+
                         </div>
                     </form>    
           </div>
